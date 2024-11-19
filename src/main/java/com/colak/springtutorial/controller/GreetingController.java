@@ -19,6 +19,8 @@ public class GreetingController {
     // http://localhost:8080/api/greetAdminOrUser
     @GetMapping("/greetAdminOrUser")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    // Another way is
+    // @PreAuthorize("hasAnyRole('ROLE_ADMIN' , 'ROLE_USER)")
     public String greetAdminOrUser() {
         return "Hello Admin or User";
     }

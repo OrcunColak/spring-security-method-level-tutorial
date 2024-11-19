@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
+import org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -43,7 +43,7 @@ public class WebSecurityConfiguration {
                                 .anyRequest().
                                 authenticated()
                 )
-                .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
+                .formLogin(FormLoginConfigurer::permitAll)
                 .logout(LogoutConfigurer::permitAll);
 
         return http.build();
@@ -61,6 +61,5 @@ public class WebSecurityConfiguration {
                 .build();
         return new InMemoryUserDetailsManager(user, admin);
     }
-
 
 }
